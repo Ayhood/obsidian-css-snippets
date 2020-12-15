@@ -485,8 +485,46 @@ Reduce gap between adjacent block embeds:
 }
 ```
 
-
-
+## Pseudo Class for Block References 
+Create classes for block references for different use cases. Example given is an in-line quote box. Note there is a limitation in that a separate instance of the quote must be created for each class used. Must manually change the block reference so that it ends in "-sbq" or whatever the user specifies in the CSS. 
+[video explanation by author (Lithou)](https://youtu.be/Q5GifDMEYSw)
+```CSS
+/* floats embeded block references that end with "-sbq"
+and uses a clip path to put it in a speach bubble shape */
+div[src$="-sbq"] {
+    background-color: #6096cc;
+    position: relative;
+    right: -20px;
+    float: right;
+    clip-path: polygon(0% 0%,100% 0%,100% 80%,44% 80%,20% 100%,25% 80%,0% 80%);
+    width: 35%;
+    margin-top: 5px;
+    margin-left: 10px; 
+  }
+  
+  /* Hides the embed link (optional) */
+  div[src$="-sbq"] div.markdown-embed-link {
+    visibility: hidden;
+  }
+  /* removes the normally large margins*/
+  div[src$="-sbq"] div.markdown-embed {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  /*sets padding for side bar quotes to offset clip path*/
+  div[src$="-sbq"] .markdown-preview-view {
+    padding: 3px;
+    padding-left: 10px;
+    padding-bottom: 40px;
+  }
+  /* Text of the side bar quote. Change these to fit your theme/asthetic.  */
+  div[src$="-sbq"] .markdown-preview-view p {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: larger;
+    font-style: italic;
+    color: black;
+  }
+```
 # Export to PDF
 ```css
 /* Line up "native" blockquotes with transcluded ones in PDF */
@@ -1226,6 +1264,7 @@ font-size: 0.6em;
 ```
 
 # Images
+## Zoom on Hover
 ```css
 /* From BLUE TOPAZ */
 /* Images : reduce displayed size of embedded files, zoom on hover */
@@ -1287,7 +1326,31 @@ OR
 ​```
 ```
 
-
+## Pseudo Classes of Images
+Create classes for images for different use cases. A single image can be called with any class at any point. To use, add a "#" followed by the desired class to any image embed. 
+[video explanation by author (Lithou)](https://youtu.be/Q5GifDMEYSw)
+```css
+/* creates a pseudo class for an image 
+that is clipped into an elipse
+and set to the top right of the page */ 
+div[src$="#portrait"] {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 200px;
+  clip-path: ellipse(32% 45% at 50% 50%);
+}
+/* creates a pseudo class for an image
+that is floated to the left side */
+div[src$="#side"] {
+  position: relative;
+  float: left;
+  width: 35%;
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-right: 12px;
+}
+```
 
 # Lists - (un)ordered
 
